@@ -9,7 +9,6 @@ public class ListChain<T>
     
     public ListChain()
     {
-        LogUtils.Log("ListChain-Cons");
         _list = new List<T>();
 
     }
