@@ -1,22 +1,45 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectGenerater : MonoBehaviour
 {
-    public GameObject _whiteCamp;
-    public GameObject _blackCamp;
+    public Goblin goblinObject;
+    public List<Goblin> goblinList;
     public static ObjectGenerater SharedInstance;
+    private int _goblinAmount;
+
+
+    private void Awake()
+    {
+        SharedInstance = this;
+        _goblinAmount = 20;
+    }
 
     private void Start()
     {
-        SharedInstance = this;
+        goblinList = new List<Goblin>();
+        for (var i = 0; i < _goblinAmount; i++)
+        {
+            var goblin = Instantiate(goblinObject);
+            goblin.gameObject.SetActive(false);
+            goblinList.Add(goblin);
+        }
     }
 
-    public GameObject GetCampSphere(bool isBlack)
+    public Goblin GetGoblins()
     {
-        if (isBlack) return Instantiate(_blackCamp);
-        return Instantiate(_whiteCamp);
+        // for (int i = 0; i < _goblinAmount; i++)
+        // {
+        //     if (!goblinList[i].gameObject.activeInHierarchy)
+        //     {
+        //         return goblinList[i];
+        //     }
+        // }
+        //
+        // return Instantiate(goblinObject);
+        return  goblinList.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
     }
 }
