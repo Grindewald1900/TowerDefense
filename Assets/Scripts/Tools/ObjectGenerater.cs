@@ -15,7 +15,7 @@ public class ObjectGenerater : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
-        _goblinAmount = 20;
+        _goblinAmount = 5;
     }
 
     private void Start()

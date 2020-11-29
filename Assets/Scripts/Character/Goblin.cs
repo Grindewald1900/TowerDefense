@@ -53,13 +53,12 @@ public class Goblin : MonoBehaviour
     {
         gameObject.SetActive(true);
         // transform.position = StartPoint.transform.position;
-        transform.position = new Vector3(-3, 1.2f, -30);
+        transform.position = new Vector3(15, 1, 1);
 
         if (ReferenceEquals(_agent, null))
             _agent = GetComponent<NavMeshAgent>();
-        // _agent.destination = EndPoint.transform.position;
 
-        _agent.destination = new Vector3(-3, 1.2f, 30f);
+        _agent.destination = new Vector3(15, 1, 36f);
         healthBar.value = healthBar.maxValue;
         _image.color = Color.green;
     }
