@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Goblin : MonoBehaviour
 {
@@ -14,13 +16,16 @@ public class Goblin : MonoBehaviour
     private Image _image;
     private float _maxHealth = 100f;
     private float _health;
+    private float _detectRange;
     private NavMeshAgent _agent;
+    private DefenseTower _tower;
 
     // Start is called before the first frame update
     private void Awake()
     {
         _image = healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
         _health = _maxHealth;
+        _detectRange = 5f;
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -29,7 +34,30 @@ public class Goblin : MonoBehaviour
     {
         
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(gameObject.name + " : " + other.gameObject.name);
+        if (other.gameObject.name.Contains("cannon"))
+        {
+            _tower = other.gameObject.GetComponent<DefenseTower>();
+            other.gameObject.GetComponent<DefenseTower>().Attack(this);
+        }
+
+        if (other.gameObject.name.Contains("bullet"))
+        {
+            GetAttacked(10);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name.Contains("cannon"))
+        {
+            other.gameObject.GetComponent<DefenseTower>().StopAttack();
+        }
+    }
+
     public void GetAttacked(float damage)
     {
         _health -= Random.Range(damage, damage * 0.5f);
@@ -41,7 +69,7 @@ public class Goblin : MonoBehaviour
         if (_health <= 0)
         {
             gameObject.SetActive(false);
-
+            _tower.StopAttack();
             // destroyAudio.Play();
             // if(gameObject.activeInHierarchy) 
             //     DrawCrossHair.SharedInstance.AddScore(1);
@@ -59,7 +87,7 @@ public class Goblin : MonoBehaviour
             _agent = GetComponent<NavMeshAgent>();
 
         _agent.destination = new Vector3(15, 1, 36f);
-        healthBar.value = healthBar.maxValue;
+        healthBar.value = _maxHealth;
         _image.color = Color.green;
     }
 }

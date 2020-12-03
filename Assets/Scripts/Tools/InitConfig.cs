@@ -7,6 +7,9 @@ public class InitConfig : MonoBehaviour
 {
     public const int BOARD_WIDTH = 16;
     public const int BOARD_HEIGHT = 20;
+    public const string TAG_OBSTACLE = "Obstacle";
+
+    public int CANNON_TYPE = 0;
 
     public static InitConfig SharedInstance;
 
