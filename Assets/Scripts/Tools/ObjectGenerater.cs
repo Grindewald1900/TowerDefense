@@ -7,6 +7,9 @@ using UnityEngine;
 public class ObjectGenerater : MonoBehaviour
 {
     public Goblin goblinObject;
+    public Goblin goblinObject2;
+    public Goblin goblinObject3;
+
     public List<Goblin> goblinList;
     public static ObjectGenerater SharedInstance;
     private int _goblinAmount;
@@ -15,7 +18,7 @@ public class ObjectGenerater : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
-        _goblinAmount = 20;
+        _goblinAmount = 10;
     }
 
     private void Start()

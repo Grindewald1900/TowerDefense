@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -10,11 +11,12 @@ public class Goblin : MonoBehaviour
 {
     public Slider healthBar;
     public Text healthText;
+    public int goblinLevel;
     // public GameObject StartPoint;
     // public GameObject EndPoint;
 
     private Image _image;
-    private float _maxHealth = 100f;
+    private float _maxHealth;
     private float _health;
     private float _detectRange;
     private NavMeshAgent _agent;
@@ -24,6 +26,7 @@ public class Goblin : MonoBehaviour
     private void Awake()
     {
         _image = healthBar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
+        _maxHealth = 100f * goblinLevel;
         _health = _maxHealth;
         _detectRange = 5f;
         _agent = GetComponent<NavMeshAgent>();
@@ -37,7 +40,7 @@ public class Goblin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(gameObject.name + " : " + other.gameObject.name);
+        // Debug.Log(gameObject.name + " : " + other.gameObject.name);
         if (other.gameObject.name.Contains("cannon"))
         {
             _tower = other.gameObject.GetComponent<DefenseTower>();
@@ -70,6 +73,10 @@ public class Goblin : MonoBehaviour
         {
             gameObject.SetActive(false);
             _tower.StopAttack();
+            _health = _maxHealth;
+            healthBar.value = _health;
+            InitConfig.SharedInstance.score += 10*goblinLevel;
+            ScreenTextManager.SharedInstance.MeshProScore.text = "Coins:" + InitConfig.SharedInstance.score;
             // destroyAudio.Play();
             // if(gameObject.activeInHierarchy) 
             //     DrawCrossHair.SharedInstance.AddScore(1);
@@ -79,6 +86,7 @@ public class Goblin : MonoBehaviour
     
     public void ResetEnemy()
     {
+        Debug.Log("Reset_gobilin" + gameObject.name);
         gameObject.SetActive(true);
         // transform.position = StartPoint.transform.position;
         transform.position = new Vector3(15, 1, 1);

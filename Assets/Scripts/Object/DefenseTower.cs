@@ -56,12 +56,12 @@ public class DefenseTower : MonoBehaviour
         if(_isTriggered) return;
         _isTriggered = true;
         _aimObject = goblin;
-        Debug.Log("Attack" + _aimObject.transform.position);
+        // Debug.Log("Attack" + _aimObject.transform.position);
     }
 
     public void StopAttack()
     {
         _isTriggered = false;
-        Debug.Log("Stop Attack" + _aimObject.transform.position);
+        // Debug.Log("Stop Attack" + _aimObject.transform.position);
     }
 }

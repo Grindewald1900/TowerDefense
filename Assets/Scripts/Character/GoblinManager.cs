@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoblinManager : MonoBehaviour
 {
-    private float PRODUCE_TIME = 5f;
+    private float PRODUCE_TIME = 3f;
     private float _countDownTime;
     public Goblin GoblinObject;
     

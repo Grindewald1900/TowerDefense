@@ -12,14 +12,19 @@ public class Board : MonoBehaviour
     private void Start()
     { 
         obsList = new List<Obstacle>();
-        obstacles = GameObject.FindGameObjectsWithTag(InitConfig.TAG_OBSTACLE);
+        obstacles = GameObject.FindGameObjectsWithTag(InitConfig.TagObstacle);
         foreach (var obj in obstacles)
         {
             obsList.Add(obj.GetComponent<Obstacle>());
             // _obstacles.Append(obj.GetComponent<Obstacle>());
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Debug.Log(gameObject.name + " : " + other.gameObject.name);
+    }
+
     public void ShowAvailableSlice(int type)
     {
         InitConfig.SharedInstance.CANNON_TYPE = type;
