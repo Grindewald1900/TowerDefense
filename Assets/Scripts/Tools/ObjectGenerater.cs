@@ -45,4 +45,12 @@ public class ObjectGenerater : MonoBehaviour
         // return Instantiate(goblinObject);
         return  goblinList.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
     }
+
+    public void ResetGame()
+    {
+        for (var i = 0; i < _goblinAmount; i++)
+        {
+            goblinList[i].gameObject.SetActive(false);
+        }
+    }
 }

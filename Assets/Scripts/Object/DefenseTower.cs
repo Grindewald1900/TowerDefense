@@ -34,9 +34,8 @@ public class DefenseTower : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot(Vector3 direction)
+    private IEnumerator Shoot(Vector3 direction)
     {
-        Debug.Log("Shoot");
         _isShooting = true;
         yield return new WaitForSeconds(shootDelay);
         var bullet = Instantiate(Bullet);

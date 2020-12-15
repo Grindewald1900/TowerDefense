@@ -16,15 +16,17 @@ public class InitConfig : MonoBehaviour
     public const int Level2Goblin2 = 10;
     public const int Level3Goblin2 = 20;
     public const int Level3Goblin3 = 5;
+    public const int BaseCost = 50;
 
 
     
     public const string TagObstacle = "Obstacle";
 
+    public int gameLevel = 1;
     public int CANNON_TYPE = 0;
     public int DifficultLevel = 1;
-    public int score = 200;
-    public int passCount = 0;
+    public int score;
+    public int passCount;
     public static InitConfig SharedInstance;
 
 
@@ -33,6 +35,8 @@ public class InitConfig : MonoBehaviour
     private void Start()
     {
         SharedInstance = this;
+        score = 200;
+        passCount = 0;
     }
     
 

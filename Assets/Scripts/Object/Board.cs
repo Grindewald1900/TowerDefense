@@ -8,9 +8,11 @@ public class Board : MonoBehaviour
 {
     public GameObject[] obstacles;
     private List<Obstacle> obsList;
+    public static Board SharedInstance;
 
     private void Start()
-    { 
+    {
+        SharedInstance = this;
         obsList = new List<Obstacle>();
         obstacles = GameObject.FindGameObjectsWithTag(InitConfig.TagObstacle);
         foreach (var obj in obstacles)
@@ -32,6 +34,19 @@ public class Board : MonoBehaviour
         {
             item.HighLight();
         }
+    }
+
+    public void ResetBoardColor()
+    {
+        foreach (var item in obsList)
+        {
+            item.Normal();
+        }
+    }
+
+    public void ResetBoard()
+    {
+        
     }
 
     public void RemoveSlice(Obstacle obstacle)

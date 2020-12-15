@@ -49,7 +49,12 @@ public class Goblin : MonoBehaviour
 
         if (other.gameObject.name.Contains("bullet"))
         {
-            GetAttacked(10);
+            int dmg = 10;
+            if (other.gameObject.name.Contains("2"))
+                dmg = 20;
+            if (other.gameObject.name.Contains("3"))
+                dmg = 40;
+            GetAttacked(dmg);
         }
     }
 
@@ -76,11 +81,8 @@ public class Goblin : MonoBehaviour
             _health = _maxHealth;
             healthBar.value = _health;
             InitConfig.SharedInstance.score += 10*goblinLevel;
+            Debug.Log("Score:"+InitConfig.SharedInstance.score );
             ScreenTextManager.SharedInstance.MeshProScore.text = "Coins:" + InitConfig.SharedInstance.score;
-            // destroyAudio.Play();
-            // if(gameObject.activeInHierarchy) 
-            //     DrawCrossHair.SharedInstance.AddScore(1);
-            // Invoke("InactiveEnemy",1f);
         }
     }
     

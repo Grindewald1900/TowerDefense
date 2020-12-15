@@ -7,10 +7,14 @@ using UnityEngine;
 public class NormalPlane : MonoBehaviour
 {
     public GameObject explosion;
+
+    private AudioSource audioExplosion;
+    public AudioClip clipExplosion;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioExplosion = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,8 +25,8 @@ public class NormalPlane : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(gameObject.name + " : " + other.gameObject.name);
-        if (other.name.Contains("bullet(Clone)"))
+        // Debug.Log(gameObject.name + " : " + other.gameObject.name);
+        if (other.name.Contains("bullet") && other.name.Contains("Clone"))
         {
             ShowExplosion(other.gameObject);
         }
@@ -36,6 +40,7 @@ public class NormalPlane : MonoBehaviour
 
     IEnumerator DestroyExplosion(GameObject ex)
     {
+        audioExplosion.PlayOneShot(clipExplosion);
         yield return new WaitForSeconds(2);
         Destroy(ex);
     }
