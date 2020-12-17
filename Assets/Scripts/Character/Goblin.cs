@@ -77,18 +77,19 @@ public class Goblin : MonoBehaviour
         if (_health <= 0)
         {
             gameObject.SetActive(false);
+            transform.position = new Vector3(15, 1, 1);
             _tower.StopAttack();
             _health = _maxHealth;
             healthBar.value = _health;
             InitConfig.SharedInstance.score += 10*goblinLevel;
-            Debug.Log("Score:"+InitConfig.SharedInstance.score );
+            // Debug.Log("Score:"+InitConfig.SharedInstance.score );
             ScreenTextManager.SharedInstance.MeshProScore.text = "Coins:" + InitConfig.SharedInstance.score;
         }
     }
     
     public void ResetEnemy()
     {
-        Debug.Log("Reset_gobilin" + gameObject.name);
+        // Debug.Log("Reset_gobilin" + gameObject.name);
         gameObject.SetActive(true);
         // transform.position = StartPoint.transform.position;
         transform.position = new Vector3(15, 1, 1);

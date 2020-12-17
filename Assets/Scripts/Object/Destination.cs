@@ -8,7 +8,7 @@ public class Destination : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(gameObject.name + " : " + other.gameObject.name);
-        if (other.gameObject.name.Contains("Goblin(Clone)"))
+        if (other.gameObject.name.Contains("Goblin") && other.gameObject.name.Contains("Clone"))
         {
             InitConfig.SharedInstance.passCount += 1;
             PlayerStats.Instance.TakeDamage(1);
@@ -19,6 +19,7 @@ public class Destination : MonoBehaviour
                 ObjectGenerater.SharedInstance.ResetGame();
                 GoblinManager.SharedInstance.isGaming = false;
                 ScreenTextManager.SharedInstance.MeshProHint.text = "You Lose!";
+                ScreenTextManager.SharedInstance.ShowGameMenu(true);
             }
         }
     }

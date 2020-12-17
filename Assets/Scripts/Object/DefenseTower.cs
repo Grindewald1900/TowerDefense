@@ -48,7 +48,8 @@ public class DefenseTower : MonoBehaviour
     IEnumerator StopBullet(GameObject bullet)
     {
         yield return new WaitForSeconds(1.5f);
-        bullet.SetActive(false);
+        Destroy(bullet);
+        // bullet.SetActive(false);
     }
     public void Attack(Goblin goblin)
     {

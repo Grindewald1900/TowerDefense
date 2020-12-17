@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class ObjectGenerater : MonoBehaviour
 {
-    public Goblin goblinObject;
+    public Goblin goblinObject1;
     public Goblin goblinObject2;
     public Goblin goblinObject3;
 
-    public List<Goblin> goblinList;
+    public List<Goblin> goblinList1;
+    public List<Goblin> goblinList2;
+    public List<Goblin> goblinList3;
+
     public static ObjectGenerater SharedInstance;
     private int _goblinAmount;
 
@@ -18,21 +21,32 @@ public class ObjectGenerater : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
-        _goblinAmount = 10;
+        _goblinAmount = 50;
     }
 
     private void Start()
     {
-        goblinList = new List<Goblin>();
+        goblinList1 = new List<Goblin>();
+        goblinList2 = new List<Goblin>();
+        goblinList3 = new List<Goblin>();
         for (var i = 0; i < _goblinAmount; i++)
         {
-            var goblin = Instantiate(goblinObject);
-            goblin.gameObject.SetActive(false);
-            goblinList.Add(goblin);
+            var goblin1 = Instantiate(goblinObject1);
+            var goblin2 = Instantiate(goblinObject2);
+            var goblin3 = Instantiate(goblinObject3);
+
+            goblin1.gameObject.SetActive(false);
+            goblin2.gameObject.SetActive(false);
+            goblin3.gameObject.SetActive(false);
+
+            goblinList1.Add(goblin1);
+            goblinList2.Add(goblin2);
+            goblinList3.Add(goblin3);
+
         }
     }
 
-    public Goblin GetGoblins()
+    public Goblin GetGoblins(int type)
     {
         // for (int i = 0; i < _goblinAmount; i++)
         // {
@@ -43,14 +57,27 @@ public class ObjectGenerater : MonoBehaviour
         // }
         //
         // return Instantiate(goblinObject);
-        return  goblinList.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
+        switch (type)
+        {
+            case 1:
+                return  goblinList1.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
+            case 2:
+                return  goblinList2.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
+            case 3:
+                return  goblinList3.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
+            default:
+                return  goblinList1.FirstOrDefault(t => !t.gameObject.activeInHierarchy);
+        }
     }
 
     public void ResetGame()
     {
         for (var i = 0; i < _goblinAmount; i++)
         {
-            goblinList[i].gameObject.SetActive(false);
+            goblinList1[i].gameObject.SetActive(false);
+            goblinList2[i].gameObject.SetActive(false);
+            goblinList3[i].gameObject.SetActive(false);
+
         }
     }
 }
