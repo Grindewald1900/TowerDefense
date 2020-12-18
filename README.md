@@ -16,13 +16,17 @@ the human psychological need for security, ownership, and desire to protect the 
 
 ### Video demo     
 
-**Please check [Viedo Demo - Final](https://youtu.be/-dkioymuDS0)  for more information.**   
+**Please check [Viedo Demo - Final](https://youtu.be/lk4kcvDysTY)  for more information.**   
 
 
 
 -------------------------------
 ### Basic functions
 ### Part 1 -  Gameplay
+<div align=center><img src="https://github.com/Grindewald1900/General-notes/blob/master/Image/Game/5-9.png?raw=true" width="80%" height="80%"></div>  <br></br>
+<div align=center><img src="https://github.com/Grindewald1900/General-notes/blob/master/Image/Game/5-10.png?raw=true" width="80%" height="80%"></div>  <br></br>
+<div align=center><img src="https://github.com/Grindewald1900/General-notes/blob/master/Image/Game/5-11.png?raw=true" width="80%" height="80%"></div>  <br></br>
+
 
 * **a. Must have at least 3 levels**  
 For the game play, we designed 3 levels which are composed of different kind of enemies.    
@@ -101,8 +105,11 @@ we designed the UI for speed control and implemented the according function with
 
 
 * **c. Learning curve – game should be easy to start and learn.**  
-Quite easy for starters, since this game is designed for mobile phone and only have a few buttons. Specifically, we only have 4 buttons in the main UI, and 4 buttons in the submenu
-when you press `Esc`.  
+Quite easy for starters, since this game is designed for mobile phone and only have a few buttons. Specifically, we only have 4 buttons in the main UI, and 4 buttons in the submenu when you press `Esc`.     
+Also, we implemented some hint for new players, in order to provide a better gameplay.  
+
+<div align=center><img src="https://github.com/Grindewald1900/General-notes/blob/master/Image/Game/5-8.png?raw=true" width="80%" height="80%"></div>  <br></br>
+
 **Main UI**  
 &ensp; - `Button1` : Cannon type 1  
 &ensp; - `Button2` : Cannon type 2  
